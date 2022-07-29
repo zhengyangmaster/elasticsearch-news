@@ -3,6 +3,7 @@ package com.example.newssearch.controller;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.example.newssearch.annotation.Auth;
 import com.example.newssearch.base.DataUtils;
 import com.example.newssearch.common.AjaxResult;
 import com.example.newssearch.dto.ArticleDto;
@@ -34,13 +35,13 @@ public class ArticleController {
             List<Article> list = JSONUtil.toList(data, Article.class);
             articleService.saveBatch(list);
             System.out.println("存入数据成功当前存入当前条数为" + 40 * k);
-
         }
         return AjaxResult.success("存入数据成功");
 
     }
 
     //获取数据库中的全部数据
+    @Auth
     @PostMapping("/listArticle")
     public AjaxResult listArticle(@RequestBody ArticleDto articleDto) {
         IPage<Article> page = articleService.listArticle(articleDto);

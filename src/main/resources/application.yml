@@ -17,3 +17,10 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
+news:
+  zzy:
+    allowHeadKeys:
+      - T-KEY: news-zzy
+        T-SEC: 99b2eeecb4f10339
+
+
