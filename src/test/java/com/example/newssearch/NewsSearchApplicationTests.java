@@ -3,16 +3,19 @@ package com.example.newssearch;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.example.newssearch.base.DataUtils;
+import com.example.newssearch.config.RabbitmqConfig;
 import com.example.newssearch.dto.NewDto;
 import com.example.newssearch.entity.News;
+import com.example.newssearch.po.Article;
 import com.example.newssearch.reposity.NewsRepository;
-import com.example.newssearch.service.NewService;
 import com.example.newssearch.service.impl.NewServiceImpl;
 import com.example.newssearch.utils.GeneratID;
+import com.example.newssearch.utils.GetMessage;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -24,6 +27,12 @@ import java.util.List;
 @SpringBootTest(classes = NewsSearchApplication.class)
 @RunWith(SpringRunner.class)
 public class NewsSearchApplicationTests {
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @Autowired
+    private GetMessage message;
 
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
@@ -64,13 +73,32 @@ public class NewsSearchApplicationTests {
     }
 
     @Test
-    public void searchTest(){
+    public void searchTest() {
         NewDto dto = new NewDto();
         dto.setKeyWord("习近平");
         dto.setCategory("news");
         Page<News> news = service.listByKeyWord(dto);
         news.forEach(System.out::println);
         System.out.println(news);
+
+    }
+
+
+    @Test
+    public void mqtest() {
+
+        rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_NAME, "#", "我是消息我来了");
+
+    }
+
+
+    @Test
+    public void setnews() {
+        JSONArray data = DataUtils.getData(1);
+        List<Article> list = JSONUtil.toList(data, Article.class);
+        list.stream().peek(article -> rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_NAME, "#",
+                JSONUtil.parseObj(article))).forEach(System.out::println);
+
 
     }
 }

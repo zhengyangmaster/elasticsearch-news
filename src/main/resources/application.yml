@@ -11,6 +11,11 @@ spring:
     username: root
     password: 990915
     url: jdbc:mysql://localhost:3306/news?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+  rabbitmq:
+    host: 116.62.6.60
+    username: ZY
+    password: 990915
+    virtual-host: news
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml
   configuration:
