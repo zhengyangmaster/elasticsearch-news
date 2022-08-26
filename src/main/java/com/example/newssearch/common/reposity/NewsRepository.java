@@ -1,9 +1,8 @@
-package com.example.newssearch.reposity;
+package com.example.newssearch.common.reposity;
 
 import com.example.newssearch.entity.News;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.Date;
 import java.util.List;

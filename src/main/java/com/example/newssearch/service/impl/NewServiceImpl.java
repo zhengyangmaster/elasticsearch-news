@@ -1,12 +1,10 @@
 package com.example.newssearch.service.impl;
 
+import com.example.newssearch.common.reposity.NewsRepository;
 import com.example.newssearch.dto.NewDto;
 import com.example.newssearch.entity.News;
-import com.example.newssearch.reposity.NewsRepository;
 import com.example.newssearch.service.NewService;
-import io.netty.util.internal.StringUtil;
 import org.apache.commons.lang.StringUtils;
-import org.apache.lucene.queryparser.xml.builders.BooleanQueryBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;

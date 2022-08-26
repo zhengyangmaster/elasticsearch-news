@@ -1,6 +1,6 @@
-package com.example.newssearch.utils;
+package com.example.newssearch.common.utils;
 
-import com.example.newssearch.config.RabbitmqConfig;
+import com.example.newssearch.common.config.RabbitmqConfig;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

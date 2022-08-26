@@ -1,4 +1,4 @@
-package com.example.newssearch.utils;
+package com.example.newssearch.common.utils;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;

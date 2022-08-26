@@ -1,4 +1,4 @@
-package com.example.newssearch.annotation;
+package com.example.newssearch.common.annotation;
 
 import java.lang.annotation.*;
 

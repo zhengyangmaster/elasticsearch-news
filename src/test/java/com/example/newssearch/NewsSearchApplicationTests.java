@@ -3,14 +3,15 @@ package com.example.newssearch;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.example.newssearch.base.DataUtils;
-import com.example.newssearch.config.RabbitmqConfig;
+import com.example.newssearch.common.config.RabbitmqConfig;
+import com.example.newssearch.common.reposity.NewsRepository;
+import com.example.newssearch.common.utils.GeneratID;
+import com.example.newssearch.common.utils.GetMessage;
+import com.example.newssearch.common.utils.InitDataMap;
 import com.example.newssearch.dto.NewDto;
 import com.example.newssearch.entity.News;
 import com.example.newssearch.po.Article;
-import com.example.newssearch.reposity.NewsRepository;
 import com.example.newssearch.service.impl.NewServiceImpl;
-import com.example.newssearch.utils.GeneratID;
-import com.example.newssearch.utils.GetMessage;
 import org.elasticsearch.index.query.MatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.junit.Test;
@@ -23,6 +24,7 @@ import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest(classes = NewsSearchApplication.class)
 @RunWith(SpringRunner.class)
@@ -96,8 +98,18 @@ public class NewsSearchApplicationTests {
     public void setnews() {
         JSONArray data = DataUtils.getData(1);
         List<Article> list = JSONUtil.toList(data, Article.class);
-        list.stream().peek(article -> rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_NAME, "#",
-                JSONUtil.parseObj(article))).forEach(System.out::println);
+        list.forEach(article -> {
+            try {
+                article.setContent("这是一段内容");
+                Map<String, Object> map = InitDataMap.entityToMap(article);
+                rabbitTemplate.convertAndSend(RabbitmqConfig.EXCHANGE_NAME, "#", map);
+                System.out.println(map);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+        });
+        System.out.println("发送完成");
 
 
     }

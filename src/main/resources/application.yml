@@ -1,3 +1,6 @@
+server:
+  port: 8088
+
 spring:
   data:
     elasticsearch:
@@ -16,6 +19,10 @@ spring:
     username: ZY
     password: 990915
     virtual-host: news
+    #确认消息已经发送到交换机
+    publisher-confirms: true
+    #确认消息已经到队列
+    publisher-returns: true
 mybatis-plus:
   mapper-locations: classpath*:mapper/*Mapper.xml
   configuration:

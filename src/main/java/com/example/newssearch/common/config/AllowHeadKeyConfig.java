@@ -1,4 +1,4 @@
-package com.example.newssearch.config;
+package com.example.newssearch.common.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

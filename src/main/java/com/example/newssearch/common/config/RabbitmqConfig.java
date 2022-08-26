@@ -1,4 +1,4 @@
-package com.example.newssearch.config;
+package com.example.newssearch.common.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;

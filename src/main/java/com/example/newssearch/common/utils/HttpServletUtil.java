@@ -1,6 +1,6 @@
-package com.example.newssearch.utils;
+package com.example.newssearch.common.utils;
 
-import com.example.newssearch.exception.BizException;
+import com.example.newssearch.common.exception.BizException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

@@ -3,14 +3,16 @@ package com.example.newssearch.controller;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.example.newssearch.annotation.Auth;
 import com.example.newssearch.base.DataUtils;
 import com.example.newssearch.common.AjaxResult;
 import com.example.newssearch.dto.ArticleDto;
 import com.example.newssearch.po.Article;
 import com.example.newssearch.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -41,9 +43,9 @@ public class ArticleController {
     }
 
     //获取数据库中的全部数据
-    @Auth
+    //@Auth
     @PostMapping("/listArticle")
-    public AjaxResult listArticle(@RequestBody ArticleDto articleDto) {
+    public AjaxResult listArticle(ArticleDto articleDto) {
         IPage<Article> page = articleService.listArticle(articleDto);
         return AjaxResult.success(page);
 

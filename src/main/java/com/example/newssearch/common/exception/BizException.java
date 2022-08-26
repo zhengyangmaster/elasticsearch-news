@@ -1,4 +1,4 @@
-package com.example.newssearch.exception;
+package com.example.newssearch.common.exception;
 
 /**
  * @author ZhuZhengYang

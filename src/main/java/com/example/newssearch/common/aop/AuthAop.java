@@ -1,13 +1,13 @@
-package com.example.newssearch.aop;
+package com.example.newssearch.common.aop;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.example.newssearch.common.AuthConstant;
-import com.example.newssearch.config.AllowHeadKeyConfig;
-import com.example.newssearch.exception.BizException;
-import com.example.newssearch.utils.HttpServletUtil;
+import com.example.newssearch.common.config.AllowHeadKeyConfig;
+import com.example.newssearch.common.exception.BizException;
+import com.example.newssearch.common.utils.HttpServletUtil;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -35,7 +35,7 @@ public class AuthAop implements AuthConstant {
     private AllowHeadKeyConfig headKeyConfig;
 
 
-    @Pointcut("@annotation(com.example.newssearch.annotation.Auth)")
+    @Pointcut("@annotation(com.example.newssearch.common.annotation.Auth)")
     private void getAuthPointCut() {
 
     }

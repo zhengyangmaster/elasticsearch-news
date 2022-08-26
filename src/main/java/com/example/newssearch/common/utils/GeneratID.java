@@ -1,4 +1,4 @@
-package com.example.newssearch.utils;
+package com.example.newssearch.common.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
